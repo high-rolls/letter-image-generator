@@ -10,10 +10,12 @@
     ]
     ,
     "functions": {
-      "api/*.py": {
-        "runtime": "python3.9"
-      }
-    },
+    "app.py": {
+      "runtime": "python3.9",
+      "includeFiles": ["fonts/*"],
+      "buildCommand": "apt-get update && apt-get install -y libjpeg-dev"
+    }
+  },
     "build": {
     "env": {
       "LD_LIBRARY_PATH": "/usr/lib"
