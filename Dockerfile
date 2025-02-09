@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y libjpeg-dev zlib1g-dev
 # Copy project files into the container
 COPY . /app
 
+# Copy the fonts directory into the Docker container
+COPY fonts /app/fonts
+
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
