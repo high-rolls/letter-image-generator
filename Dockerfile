@@ -23,4 +23,4 @@ EXPOSE 8000
 RUN pip install gunicorn
 
 # Run the Flask app with gunicorn for production
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
