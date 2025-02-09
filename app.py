@@ -1,13 +1,21 @@
 from flask import Flask, send_file, request
 from PIL import Image, ImageDraw, ImageFont
 import io
+import os
 
 app = Flask(__name__)
 
-@app.route('/generate_image', methods=['GET'])
+@app.route('/')
+def main():
+    return 'Try: <a href="/api/generate_image?name=John">/api/generate_image?name=John</a>'
+
+@app.route('/api/generate_image', methods=['GET'])
 def generate_image():
-    name = request.args.get('name', default='A', type=str)
-    
+    name = request.args.get('name', default='A', type=str).strip()
+
+    if not name:
+        name = "A"  # Default letter if the input is empty
+
     # Get the first letter of the name
     first_letter = name[0].upper()
 
@@ -15,9 +23,12 @@ def generate_image():
     img = Image.new('RGB', (200, 200), color='white')
     draw = ImageDraw.Draw(img)
 
+    # Define the font path
+    font_path = os.path.join(os.getcwd(), "fonts", "Kagitingan-Bold.otf")
+
     # Load a font
     try:
-        font = ImageFont.truetype("fonts\Kagitingan-Bold.otf",200)
+        font = ImageFont.truetype(font_path, 150)  # Reduced size to fit better
     except IOError:
         font = ImageFont.load_default()
 
@@ -27,7 +38,7 @@ def generate_image():
     text_height = bbox[3] - bbox[1]
 
     # Calculate the position to center the text
-    position = ((200 - text_width) / 2, (200 - text_height) / 2)
+    position = ((200 - text_width) // 2, (200 - text_height) // 2)
 
     # Draw the text on the image
     draw.text(position, first_letter, fill="black", font=font)
@@ -40,5 +51,4 @@ def generate_image():
     # Return the image as a response
     return send_file(img_byte_array, mimetype='image/png')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# No `if __name__ == '__main__'` because Vercel handles running the app

@@ -53,7 +53,7 @@ python app.py
 The app will run locally, and you can access the endpoint:
 
 ```
-http://[your_domain_name]/generate_image?name=John
+http://127.0.0.1:5000//generate_image?name=John
 ```
 
 Replace `John` with any name, and the app will return an image with the first letter of that name.
@@ -62,7 +62,7 @@ Replace `John` with any name, and the app will return an image with the first le
 
 - Request:
   ```
-  http://[your_domain_name]/generate_image?name=John
+  http://127.0.0.1:5000//generate_image?name=John
   ```
 - Response: An image with the letter 'J' centered on a white background.
 
