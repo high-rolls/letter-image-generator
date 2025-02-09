@@ -1,16 +1,23 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "app.py",
-        "use": "@vercel/python"
-      }
-    ],
+  "builds": [{ "src": "Dockerfile", "use": "@vercel/docker" }],
+
     "routes": [
       {
         "src": "/(.*)",
         "dest": "/app.py"
       }
     ]
+    ,
+    "functions": {
+      "api/*.py": {
+        "runtime": "python3.9"
+      }
+    },
+    "build": {
+    "env": {
+      "LD_LIBRARY_PATH": "/usr/lib"
+    }
+  }
   }
   

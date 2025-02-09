@@ -7,9 +7,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    return 'Try: <a href="/api/generate_image?name=John">/api/generate_image?name=John</a>'
+    return 'Try: <a href="/generate_image?name=John">/generate_image?name=John</a>'
 
-@app.route('/api/generate_image', methods=['GET'])
+@app.route('/generate_image', methods=['GET'])
 def generate_image():
     name = request.args.get('name', default='A', type=str).strip()
 
@@ -51,4 +51,5 @@ def generate_image():
     # Return the image as a response
     return send_file(img_byte_array, mimetype='image/png')
 
-# No `if __name__ == '__main__'` because Vercel handles running the app
+if __name__ == '__main__':
+    app.run(debug=True)
