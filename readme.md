@@ -13,8 +13,8 @@ This Flask application generates an image featuring the first letter of a given 
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/abdelhakim-sahifa/letter-image-generator.git
+   cd letter-image-generator
    ```
 
 2. Create a virtual environment (optional but recommended):
