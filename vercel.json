@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "builds": [
+  "routes": [
     {
-      "src": "Dockerfile",
-      "use": "@vercel/docker"
+      "src": "/generate_image",
+      "dest": "/app.py"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "LD_LIBRARY_PATH": "/usr/lib"
+    }
+  }
 }
