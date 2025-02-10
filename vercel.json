@@ -1,20 +1,7 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/generate_image",
-      "dest": "/app.py"
-    }
-  ],
-  "build": {
-    "env": {
-      "LD_LIBRARY_PATH": "/usr/lib"
-    }
+  {
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/app" }
+    ]
   }
 }
